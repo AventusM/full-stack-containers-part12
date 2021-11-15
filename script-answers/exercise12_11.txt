@@ -1,0 +1,19 @@
+Setup first
+- docker-compose -f docker-compose.dev.yml down --volumes
+- docker-compose -f docker-compose.dev.yml up
+--> Start the app in background to add a todo which adds the key that redis uses
+
+docker container ls
+docker exec -it todo-backend_redis_1 bash
+redis-cli
+KEYS * --> 1) "added_todos"
+GET added_todos --> "1"
+SET added_todos "9001" --> OK
+
+- page refresh gives out json with updated value 9001
+- vscode rest client newTodo.http increases counter
+- page refresh gives out json with updated value 9002
+
+DEL added_todos --> (integer) 1
+
+New todo added --> json from 0 to 1
