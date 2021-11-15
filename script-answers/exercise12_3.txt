@@ -1,0 +1,4 @@
+docker start -i charming_khayyam (container from previous cmd: docker container run -it ubuntu bash)
+apt-get update
+apt-get -y install nano
+nano /usr/src/app/index.js (ctrl+x etc to save)
