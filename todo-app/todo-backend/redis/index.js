@@ -5,6 +5,8 @@ const { REDIS_URL } = require('../util/config');
 let getAsync;
 let setAsync;
 
+const ADDED_TODOS_KEY = 'added_todos';
+
 if (!REDIS_URL) {
   const redisIsDisabled = () => {
     console.log('No REDIS_URL set, Redis is disabled');
@@ -24,4 +26,5 @@ if (!REDIS_URL) {
 module.exports = {
   getAsync,
   setAsync,
+  ADDED_TODOS_KEY,
 };
