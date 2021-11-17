@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./todo-frontend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./todo-frontend:/usr/src/app
+    ports:
+      - 3000:3000
+    container_name: todo-front-dev
+  server:
+    build:
+      context: ./todo-backend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./todo-backend:/usr/src/app
+    ports:
+      - 3001:3001
+    environment: 
+      - PORT=3001
+      - REDIS_URL=//cache:6379
+      - MONGO_URL=mongodb://the_username:the_password@database:27017/the_database
+    container_name: todo-back-dev
+
+  mongo:
+    container_name: database
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    ports:
+      - 27017:27017
+    volumes:
+      - ./todo-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./todo-backend/mongo_data:/data/db
+
+  redis:
+    container_name: cache
+    image: redis
+    command: ['redis-server', '--appendonly', 'yes']
+    ports:
+      - 6379:6379
+    volumes:
+      - ./todo-backend/redis_data:/data
+
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
