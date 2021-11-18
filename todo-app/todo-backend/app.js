@@ -16,5 +16,6 @@ app.use(express.json());
 app.use('/', indexRouter);
 app.use('/todos', todosRouter);
 app.use('/statistics', statsRouter);
+console.log('backend env', process.env);
 
 module.exports = app;

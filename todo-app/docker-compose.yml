@@ -2,26 +2,23 @@ version: '3.8'
 
 services:
   app:
+    container_name: todo-front-prod
     build:
       context: ./todo-frontend
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./todo-frontend:/usr/src/app
-    container_name: todo-front-dev
-    ports:
-      - 3000:3000
-
   server:
+    container_name: todo-back-prod
     build:
       context: ./todo-backend
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./todo-backend:/usr/src/app
     environment: 
       - PORT=3001
       - REDIS_URL=//cache:6379
       - MONGO_URL=mongodb://the_username:the_password@database:27017/the_database
-    container_name: todo-back-dev
 
   mongo:
     container_name: database
@@ -46,11 +43,9 @@ services:
       - ./todo-backend/redis_data:/data
 
   nginx:
+    container_name: reverse-proxy
     image: nginx:1.20.1
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8080:80
-    container_name: reverse-proxy
-    depends_on:
-      - app
