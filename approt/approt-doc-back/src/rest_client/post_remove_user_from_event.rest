@@ -1,0 +1,9 @@
+
+
+POST http://localhost:3001/api/events/5fea382447a03058dc8a5a21/participation
+Content-Type: application/json
+
+{
+    "userId": "5fe9f6831bd3bf07530cf121",
+    "requestType": "remove_participation"
+}

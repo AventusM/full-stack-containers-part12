@@ -1,0 +1,6 @@
+
+DELETE http://localhost:3001/api/events/5fea37bdd296d45706925d89
+Content-Type: application/json
+
+{
+}

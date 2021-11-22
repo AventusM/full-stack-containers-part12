@@ -1,0 +1,6 @@
+
+GET http://localhost:3001/api/eventgroups/5ff104c53667b2176d3df5d7
+Content-Type: application/json
+
+{
+}

@@ -1,0 +1,11 @@
+
+
+POST http://localhost:3001/api/events
+Content-Type: application/json
+
+{
+    "name": "Vuodenvaihteen approt#2",
+    "location": "#Underground",
+    "startDate": "2020-12-31",
+    "endDate": "2021-01-01"
+}

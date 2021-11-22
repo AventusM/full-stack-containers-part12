@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+    <h1>List of available paths</h1>
+
+    <ul>
+        {% for path in pathArray %}
+            <li>
+                <a href="{{path.link}}">{{path.link}}</li>
+                {% endfor%}
+            </ul>
+        {% endblock %}

@@ -1,0 +1,5 @@
+GET http://localhost:3001/api/events/THISWILLFAIL123
+Content-Type: application/json
+
+{
+}

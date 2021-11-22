@@ -1,0 +1,19 @@
+
+
+POST http://localhost:3001/api/eventgroups
+Content-Type: application/json
+
+{
+    "userId": "5ff104963667b2176d3df5d5",
+    "name": "Test1",
+    "startDate": "2021-01-01",
+    "endDate": "2022-01-01",
+    "events": [
+        {
+            "name": "Baari #1",
+            "location": "Aleksanterinkatu 13b",
+            "startDate": "2021-01-01",
+            "endDate": "2021-02-02"
+        }
+    ]
+}
